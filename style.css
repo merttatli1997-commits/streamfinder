@@ -105,3 +105,18 @@ h1 {
     background-color: #3b82f6;
     color: white;
 }
+@media (max-width: 600px) {
+    .kapsayici {
+        padding: 0 16px;
+        width: 100%;
+    }
+
+    #sonuclar {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    input {
+        width: 180px;
+    }
+}
