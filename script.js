@@ -25,9 +25,6 @@ function geriDon() {
 function kartlariDinle() {
     document.querySelectorAll(".film-kart").forEach(function(kart) {
         kart.addEventListener("click", function() {
-            button.addEventListener("click", function() {
-    console.log("butona basıldı");
-    const aranan = input.value;
             const filmId = kart.getAttribute("data-id");
             const tur = kart.getAttribute("data-tur");
             const endpoint = tur === "Film" ? "movie" : "tv";
@@ -58,10 +55,10 @@ function kartlariDinle() {
                             });
                         }
 
-                        platformHtml += "<button id='geri-don'>← Geri Dön</button>";
+                        platformHtml += "<button id='geri-don' type='button'>← Geri Dön</button>";
                         sonuclar.innerHTML = platformHtml;
                     } else {
-                        sonuclar.innerHTML = "<h3>Platform Bilgisi</h3><p>Bu içerik Türkiye'de henüz hiçbir platformda mevcut değil.</p><button id='geri-don'>← Geri Dön</button>";
+                        sonuclar.innerHTML = "<h3>Platform Bilgisi</h3><p>Bu içerik Türkiye'de henüz hiçbir platformda mevcut değil.</p><button id='geri-don' type='button'>← Geri Dön</button>";
                     }
 
                     document.getElementById("geri-don").addEventListener("click", geriDon);
@@ -102,11 +99,11 @@ document.querySelectorAll(".filtre-btn").forEach(function(btn) {
         const secilen = btn.getAttribute("data-filtre");
         aktifFiltre = (aktifFiltre === secilen && secilen !== "hepsi") ? "hepsi" : secilen;
         document.querySelectorAll(".filtre-btn").forEach(b => b.classList.remove("aktif"));
-if (aktifFiltre !== "hepsi" || secilen === "hepsi") {
-    btn.classList.add("aktif");
-} else {
-    document.querySelector("[data-filtre='hepsi']").classList.add("aktif");
-}
+        if (aktifFiltre !== "hepsi" || secilen === "hepsi") {
+            btn.classList.add("aktif");
+        } else {
+            document.querySelector("[data-filtre='hepsi']").classList.add("aktif");
+        }
         if (sonuclar.innerHTML !== sonuclarHafiza) {
             geriDon();
         } else {
@@ -120,7 +117,9 @@ input.addEventListener("keydown", function(event) {
         button.click();
     }
 });
+
 input.focus();
+
 document.getElementById("logo").addEventListener("click", function() {
     sonuclar.innerHTML = "";
     input.value = "";
