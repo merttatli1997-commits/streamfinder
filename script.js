@@ -25,6 +25,9 @@ function geriDon() {
 function kartlariDinle() {
     document.querySelectorAll(".film-kart").forEach(function(kart) {
         kart.addEventListener("click", function() {
+            button.addEventListener("click", function() {
+    console.log("butona basıldı");
+    const aranan = input.value;
             const filmId = kart.getAttribute("data-id");
             const tur = kart.getAttribute("data-tur");
             const endpoint = tur === "Film" ? "movie" : "tv";
