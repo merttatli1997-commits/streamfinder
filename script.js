@@ -1,7 +1,7 @@
 const API_KEY = "961d669761aa579f97f0b0b2854997f4";
 
 const input = document.querySelector("input");
-const button = document.querySelector("button");
+const button = document.getElementById("ara-btn");
 const sonuclar = document.getElementById("sonuclar");
 let aktifFiltre = "hepsi";
 let sonuclarHafiza = "";
