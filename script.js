@@ -29,40 +29,68 @@ function kartlariDinle() {
             const tur = kart.getAttribute("data-tur");
             const endpoint = tur === "Film" ? "movie" : "tv";
 
-            fetch("https://api.themoviedb.org/3/" + endpoint + "/" + filmId + "/watch/providers?api_key=" + API_KEY)
-                .then(r => r.json())
-                .then(function(data) {
-                    const turkiye = data.results.TR;
-                    if (turkiye) {
-                        let platformHtml = "<h3>Platform Bilgisi</h3>";
+            const providerFetch = fetch("https://api.themoviedb.org/3/" + endpoint + "/" + filmId + "/watch/providers?api_key=" + API_KEY).then(r => r.json());
+            const detayFetch = fetch("https://api.themoviedb.org/3/" + endpoint + "/" + filmId + "?api_key=" + API_KEY + "&language=tr-TR").then(r => r.json());
 
-                        if (turkiye.flatrate) {
-                            platformHtml += "<p><strong>Abonelik:</strong></p>";
-                            turkiye.flatrate.forEach(function(p) {
-                                platformHtml += "<div class='platform'><img src='https://image.tmdb.org/t/p/w45" + p.logo_path + "'><p>" + p.provider_name + "</p></div>";
-                            });
-                        }
-                        if (turkiye.rent) {
-                            platformHtml += "<p><strong>Kiralama:</strong></p>";
-                            turkiye.rent.forEach(function(p) {
-                                platformHtml += "<div class='platform'><img src='https://image.tmdb.org/t/p/w45" + p.logo_path + "'><p>" + p.provider_name + "</p></div>";
-                            });
-                        }
-                        if (turkiye.buy) {
-                            platformHtml += "<p><strong>Satın Al:</strong></p>";
-                            turkiye.buy.forEach(function(p) {
-                                platformHtml += "<div class='platform'><img src='https://image.tmdb.org/t/p/w45" + p.logo_path + "'><p>" + p.provider_name + "</p></div>";
-                            });
-                        }
+            Promise.all([providerFetch, detayFetch]).then(function(sonuc) {
+                const data = sonuc[0];
+                const detay = sonuc[1];
+                const turkiye = data.results.TR;
 
-                        platformHtml += "<button id='geri-don' type='button'>← Geri Dön</button>";
-                        sonuclar.innerHTML = platformHtml;
-                    } else {
-                        sonuclar.innerHTML = "<h3>Platform Bilgisi</h3><p>Bu içerik Türkiye'de henüz hiçbir platformda mevcut değil.</p><button id='geri-don' type='button'>← Geri Dön</button>";
+                const poster = detay.poster_path
+                    ? "<img src='https://image.tmdb.org/t/p/w185" + detay.poster_path + "' class='detay-poster'>"
+                    : "";
+
+                const puan = detay.vote_average ? "⭐ " + detay.vote_average.toFixed(1) : "";
+                const sure = detay.runtime ? "🕐 " + detay.runtime + " dk" : "";
+                const sezon = detay.number_of_seasons ? "📺 " + detay.number_of_seasons + " sezon" : "";
+                const genre = detay.genres && detay.genres.length > 0 ? "🎬 " + detay.genres.map(g => g.name).join(", ") : "";
+                const yil = detay.release_date || detay.first_air_date || "";
+
+                const detayBilgi = `
+                    <div class='detay-ust'>
+                        ${poster}
+                        <div class='detay-bilgi'>
+                            <h3>${detay.title || detay.name}</h3>
+                            <p class='detay-yil'>${yil}</p>
+                            <span class='etiket ${tur === "Film" ? "etiket-film" : "etiket-dizi"}'>${tur}</span>
+                            ${puan ? "<p class='detay-meta'>" + puan + "</p>" : ""}
+                            ${sure ? "<p class='detay-meta'>" + sure + "</p>" : ""}
+                            ${sezon ? "<p class='detay-meta'>" + sezon + "</p>" : ""}
+                            ${genre ? "<p class='detay-meta'>" + genre + "</p>" : ""}
+                        </div>
+                    </div>
+                `;
+
+                let platformHtml = detayBilgi + "<h3>Platform Bilgisi</h3>";
+
+                if (turkiye) {
+                    if (turkiye.flatrate) {
+                        platformHtml += "<p><strong>Abonelik:</strong></p>";
+                        turkiye.flatrate.forEach(function(p) {
+                            platformHtml += "<div class='platform'><img src='https://image.tmdb.org/t/p/w45" + p.logo_path + "'><p>" + p.provider_name + "</p></div>";
+                        });
                     }
+                    if (turkiye.rent) {
+                        platformHtml += "<p><strong>Kiralama:</strong></p>";
+                        turkiye.rent.forEach(function(p) {
+                            platformHtml += "<div class='platform'><img src='https://image.tmdb.org/t/p/w45" + p.logo_path + "'><p>" + p.provider_name + "</p></div>";
+                        });
+                    }
+                    if (turkiye.buy) {
+                        platformHtml += "<p><strong>Satın Al:</strong></p>";
+                        turkiye.buy.forEach(function(p) {
+                            platformHtml += "<div class='platform'><img src='https://image.tmdb.org/t/p/w45" + p.logo_path + "'><p>" + p.provider_name + "</p></div>";
+                        });
+                    }
+                } else {
+                    platformHtml += "<p>Bu içerik Türkiye'de henüz hiçbir platformda mevcut değil.</p>";
+                }
 
-                    document.getElementById("geri-don").addEventListener("click", geriDon);
-                });
+                platformHtml += "<button id='geri-don' type='button'>← Geri Dön</button>";
+                sonuclar.innerHTML = platformHtml;
+                document.getElementById("geri-don").addEventListener("click", geriDon);
+            });
         });
     });
 }
