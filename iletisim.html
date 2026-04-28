@@ -6,48 +6,50 @@
     <title>İletişim – StreamFinder</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body { padding-top: 60px; align-items: flex-start; }
-        .icerik { max-width: 640px; width: 100%; margin: 0 auto; padding: 0 16px; }
-        .sayfa-baslik { color: #1e3a5f; font-size: 28px; margin-bottom: 8px; font-family: Arial, sans-serif; }
-        .sayfa-kart { background: white; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 20px; }
-        .sayfa-kart p { color: #444; font-size: 15px; line-height: 1.7; margin: 0 0 16px 0; font-family: Arial, sans-serif; }
-        .geri-link { display: inline-flex; align-items: center; gap: 6px; color: #3b82f6; text-decoration: none; font-size: 14px; font-family: Arial, sans-serif; margin-bottom: 24px; }
-        .geri-link:hover { text-decoration: underline; }
-        .iletisim-form label { display: block; font-size: 14px; color: #1e3a5f; font-weight: bold; margin-bottom: 6px; font-family: Arial, sans-serif; }
-        .iletisim-form input,
-        .iletisim-form textarea { width: 100%; box-sizing: border-box; padding: 10px 14px; border: 2px solid #cbd5e0; border-radius: 8px; font-size: 15px; font-family: Arial, sans-serif; outline: none; margin-bottom: 16px; resize: vertical; transition: border-color 0.2s; }
-        .iletisim-form input:focus,
-        .iletisim-form textarea:focus { border-color: #3b82f6; }
-        .iletisim-form textarea { min-height: 120px; }
-        .iletisim-form button { background-color: #3b82f6; color: white; border: none; padding: 11px 24px; border-radius: 8px; font-size: 15px; cursor: pointer; font-family: Arial, sans-serif; }
-        .iletisim-form button:hover { background-color: #2563eb; }
-        .basari-mesaj { display: none; background: #ecfdf5; border: 1px solid #10b981; color: #065f46; border-radius: 8px; padding: 14px 18px; font-size: 14px; font-family: Arial, sans-serif; margin-top: 12px; }
-        .eposta-link { color: #3b82f6; text-decoration: none; font-weight: bold; }
-        .eposta-link:hover { text-decoration: underline; }
+        body { padding-top: 64px; }
+        .sayfa { max-width: 680px; width: 100%; padding: 0 24px 80px; animation: fadeUp 0.45s ease both; }
+        .geri-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; margin-bottom: 32px; transition: color var(--transition); }
+        .geri-link:hover { color: var(--accent); }
+        .sayfa-baslik { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 700; color: var(--text-primary); letter-spacing: -1px; margin-bottom: 8px; line-height: 1.1; }
+        .sayfa-alt { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
+        .kart { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); }
+        .eposta-satir { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+        .eposta-satir a { color: var(--accent); font-size: 15px; font-weight: 600; text-decoration: none; }
+        .eposta-satir a:hover { text-decoration: underline; }
+        .eposta-satir span { font-size: 20px; }
+        label { display: block; font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; letter-spacing: 0.01em; }
+        .form-input { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: var(--radius-md); font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--text-primary); background: var(--bg); outline: none; transition: border-color var(--transition), box-shadow var(--transition); box-sizing: border-box; margin-bottom: 18px; resize: vertical; }
+        .form-input::placeholder { color: var(--text-muted); }
+        .form-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(15,107,107,0.10); }
+        textarea.form-input { min-height: 130px; }
+        .form-btn { background-color: var(--accent); color: white; border: none; padding: 13px 28px; border-radius: var(--radius-md); font-size: 15px; font-family: 'DM Sans', sans-serif; font-weight: 600; cursor: pointer; transition: background-color var(--transition), transform var(--transition); }
+        .form-btn:hover { background-color: var(--accent-hover); transform: translateY(-1px); }
+        .basari { display: none; background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); border-radius: var(--radius-md); padding: 14px 18px; font-size: 14px; margin-top: 14px; font-weight: 500; }
     </style>
 </head>
 <body>
-<div class="icerik">
+<div class="sayfa">
     <a href="index.html" class="geri-link">← Ana Sayfaya Dön</a>
     <h1 class="sayfa-baslik">İletişim</h1>
+    <p class="sayfa-alt">Hatalı bilgi, öneri veya herhangi bir konuda bize ulaşabilirsiniz.</p>
 
-    <div class="sayfa-kart">
-        <p>Hatalı platform bilgisi, öneri veya herhangi bir konuda bize ulaşmak isterseniz aşağıdaki formu kullanabilir ya da doğrudan e-posta gönderebilirsiniz.</p>
-        <p>📧 <a href="mailto:sadecedesigniletisim@gmail.com" class="eposta-link">sadecedesigniletisim@gmail.com</a></p>
-
-        <div class="iletisim-form">
-            <label for="ad">Adınız</label>
-            <input type="text" id="ad" placeholder="Adınız Soyadınız">
-
-            <label for="eposta">E-posta Adresiniz</label>
-            <input type="email" id="eposta" placeholder="ornek@mail.com">
-
-            <label for="mesaj">Mesajınız</label>
-            <textarea id="mesaj" placeholder="Mesajınızı buraya yazın..."></textarea>
-
-            <button onclick="formGonder()">Gönder</button>
-            <div class="basari-mesaj" id="basari-mesaj">✅ Mesajınız alındı! En kısa sürede geri dönüş yapacağız.</div>
+    <div class="kart">
+        <div class="eposta-satir">
+            <span>📧</span>
+            <a href="mailto:sadecedesigniletisim@gmail.com">sadecedesigniletisim@gmail.com</a>
         </div>
+
+        <label for="ad">Adınız</label>
+        <input class="form-input" type="text" id="ad" placeholder="Adınız Soyadınız">
+
+        <label for="eposta">E-posta Adresiniz</label>
+        <input class="form-input" type="email" id="eposta" placeholder="ornek@mail.com">
+
+        <label for="mesaj">Mesajınız</label>
+        <textarea class="form-input" id="mesaj" placeholder="Mesajınızı buraya yazın..."></textarea>
+
+        <button class="form-btn" onclick="formGonder()">Gönder</button>
+        <div class="basari" id="basari">✓ Mesajınız alındı! En kısa sürede geri dönüş yapacağız.</div>
     </div>
 </div>
 
@@ -56,7 +58,7 @@
     <a href="sss.html">SSS</a>
     <a href="iletisim.html">İletişim</a>
     <a href="gizlilik.html">Gizlilik Politikası</a>
-    <span>© 2025 StreamFinder</span>
+    <span>© 2026 StreamFinder</span>
 </footer>
 
 <script>
@@ -65,7 +67,7 @@ function formGonder() {
     const eposta = document.getElementById("eposta").value.trim();
     const mesaj = document.getElementById("mesaj").value.trim();
     if (!ad || !eposta || !mesaj) { alert("Lütfen tüm alanları doldurun."); return; }
-    document.getElementById("basari-mesaj").style.display = "block";
+    document.getElementById("basari").style.display = "block";
     document.getElementById("ad").value = "";
     document.getElementById("eposta").value = "";
     document.getElementById("mesaj").value = "";
