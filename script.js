@@ -54,56 +54,67 @@ function kartlariDinle() {
                 kontrolSatiri.style.display = "none";
 
                 const poster = detay.poster_path
-                    ? "<img src='https://image.tmdb.org/t/p/w185" + detay.poster_path + "' class='detay-poster'>"
-                    : "";
+                    ? "<img src='https://image.tmdb.org/t/p/w342" + detay.poster_path + "' class='detay-poster'>"
+                    : "<div class='detay-poster-placeholder'></div>";
 
-                const puan = detay.vote_average ? "⭐ " + detay.vote_average.toFixed(1) : "";
-                const sure = detay.runtime ? "🕐 " + detay.runtime + " dk" : "";
-                const sezon = detay.number_of_seasons ? "📺 " + detay.number_of_seasons + " sezon" : "";
-                const genre = detay.genres && detay.genres.length > 0 ? "🎬 " + detay.genres.map(g => g.name).join(", ") : "";
-                const yil = detay.release_date || detay.first_air_date || "";
+                const puan = detay.vote_average ? detay.vote_average.toFixed(1) : null;
+                const sure = detay.runtime ? detay.runtime + " dk" : null;
+                const sezon = detay.number_of_seasons ? detay.number_of_seasons + " sezon" : null;
+                const genre = detay.genres && detay.genres.length > 0 ? detay.genres.map(g => g.name).join(", ") : null;
+                const ozet = detay.overview || null;
+
+                // Tarih formatla
+                const hamTarih = detay.release_date || detay.first_air_date || "";
+                let yil = "";
+                if (hamTarih) {
+                    const d = new Date(hamTarih);
+                    yil = d.getFullYear();
+                }
+
+                const etiketClass = tur === "Film" ? "etiket-film" : "etiket-dizi";
 
                 const detayBilgi = `
                     <div class='detay-ust'>
                         ${poster}
                         <div class='detay-bilgi'>
-                            <h3>${detay.title || detay.name}</h3>
-                            <p class='detay-yil'>${yil}</p>
-                            <span class='etiket ${tur === "Film" ? "etiket-film" : "etiket-dizi"}'>${tur}</span>
-                            ${puan ? "<p class='detay-meta'>" + puan + "</p>" : ""}
-                            ${sure ? "<p class='detay-meta'>" + sure + "</p>" : ""}
-                            ${sezon ? "<p class='detay-meta'>" + sezon + "</p>" : ""}
-                            ${genre ? "<p class='detay-meta'>" + genre + "</p>" : ""}
+                            <div class='detay-baslik-satir'>
+                                <h3 class='detay-baslik'>${detay.title || detay.name}</h3>
+                                <span class='etiket ${etiketClass}'>${tur}</span>
+                            </div>
+                            <div class='detay-meta-satir'>
+                                ${yil ? "<span class='meta-chip'>" + yil + "</span>" : ""}
+                                ${puan ? "<span class='meta-chip'>⭐ " + puan + "</span>" : ""}
+                                ${sure ? "<span class='meta-chip'>🕐 " + sure + "</span>" : ""}
+                                ${sezon ? "<span class='meta-chip'>📺 " + sezon + "</span>" : ""}
+                            </div>
+                            ${genre ? "<p class='detay-genre'>" + genre + "</p>" : ""}
+                            ${ozet ? "<p class='detay-ozet'>" + ozet + "</p>" : ""}
                         </div>
                     </div>
                 `;
 
-                let platformHtml = detayBilgi + "<h3>Platform Bilgisi</h3>";
-
-                if (turkiye) {
-                    if (turkiye.flatrate) {
-                        platformHtml += "<p><strong>Abonelik:</strong></p>";
-                        turkiye.flatrate.forEach(function(p) {
-                            platformHtml += "<div class='platform'><img src='https://image.tmdb.org/t/p/w45" + p.logo_path + "'><p>" + p.provider_name + "</p></div>";
-                        });
-                    }
-                    if (turkiye.rent) {
-                        platformHtml += "<p><strong>Kiralama:</strong></p>";
-                        turkiye.rent.forEach(function(p) {
-                            platformHtml += "<div class='platform'><img src='https://image.tmdb.org/t/p/w45" + p.logo_path + "'><p>" + p.provider_name + "</p></div>";
-                        });
-                    }
-                    if (turkiye.buy) {
-                        platformHtml += "<p><strong>Satın Al:</strong></p>";
-                        turkiye.buy.forEach(function(p) {
-                            platformHtml += "<div class='platform'><img src='https://image.tmdb.org/t/p/w45" + p.logo_path + "'><p>" + p.provider_name + "</p></div>";
-                        });
-                    }
-                } else {
-                    platformHtml += "<p style='padding:8px 12px;color:#6b6860;font-size:14px;'>Bu içerik Türkiye'de henüz hiçbir platformda mevcut değil.</p>";
+                // Platform bölümü
+                function platformGrubu(baslik, ikon, liste) {
+                    if (!liste || liste.length === 0) return "";
+                    let html = "<div class='platform-grup'><div class='platform-grup-baslik'><span class='platform-ikon'>" + ikon + "</span>" + baslik + "</div><div class='platform-liste'>";
+                    liste.forEach(function(p) {
+                        html += "<div class='platform'><img src='https://image.tmdb.org/t/p/w45" + p.logo_path + "'><span>" + p.provider_name + "</span></div>";
+                    });
+                    html += "</div></div>";
+                    return html;
                 }
 
-                platformHtml += "<button id='geri-don' type='button'>← Geri Dön</button>";
+                let platformHtml = detayBilgi + "<div class='platform-bolum'><h3>Platform Bilgisi</h3>";
+
+                if (turkiye) {
+                    platformHtml += platformGrubu("Abonelik", "📡", turkiye.flatrate);
+                    platformHtml += platformGrubu("Kiralama", "💳", turkiye.rent);
+                    platformHtml += platformGrubu("Satın Al", "🛒", turkiye.buy);
+                } else {
+                    platformHtml += "<p class='platform-yok'>Bu içerik Türkiye'de henüz hiçbir platformda mevcut değil.</p>";
+                }
+
+                platformHtml += "</div><button id='geri-don' type='button'>← Geri Dön</button>";
                 sonuclar.innerHTML = platformHtml;
                 document.getElementById("geri-don").addEventListener("click", geriDon);
             });
