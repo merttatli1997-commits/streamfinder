@@ -139,6 +139,7 @@ button.addEventListener("click", function() {
         aktifFiltre = "hepsi";
         kontrolSatiri.style.display = "flex";
         sonuclar.innerHTML = "";
+        sonuclar.style.display = "";
         document.body.classList.add("arama-yapildi");
 
         hepsi.forEach(function(film) {
@@ -199,6 +200,7 @@ input.focus();
 
 document.getElementById("logo").addEventListener("click", function() {
     sonuclar.innerHTML = "";
+    sonuclar.style.display = "none";
     input.value = "";
     aktifFiltre = "hepsi";
     aktifGorunum = "grid";
