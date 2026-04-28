@@ -7,7 +7,7 @@ const gorunumToggle = document.getElementById("gorunum-toggle");
 const kontrolSatiri = document.getElementById("kontrol-satiri");
 let aktifFiltre = "hepsi";
 let sonuclarHafiza = "";
-let aktifGorunum = "liste";
+let aktifGorunum = "grid";
 
 function gorunumUygula() {
     if (aktifGorunum === "grid") {
@@ -201,11 +201,11 @@ document.getElementById("logo").addEventListener("click", function() {
     sonuclar.innerHTML = "";
     input.value = "";
     aktifFiltre = "hepsi";
-    aktifGorunum = "liste";
+    aktifGorunum = "grid";
     document.body.classList.remove("arama-yapildi");
     document.querySelectorAll(".filtre-btn").forEach(b => b.classList.remove("aktif"));
     kontrolSatiri.style.display = "none";
-    document.getElementById("btn-liste").classList.add("aktif");
-    document.getElementById("btn-grid").classList.remove("aktif");
+    document.getElementById("btn-grid").classList.add("aktif");
+    document.getElementById("btn-liste").classList.remove("aktif");
     input.focus();
 });
