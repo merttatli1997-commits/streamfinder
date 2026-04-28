@@ -4,6 +4,7 @@ const input = document.querySelector("input");
 const button = document.getElementById("ara-btn");
 const sonuclar = document.getElementById("sonuclar");
 const gorunumToggle = document.getElementById("gorunum-toggle");
+const kontrolSatiri = document.getElementById("kontrol-satiri");
 let aktifFiltre = "hepsi";
 let sonuclarHafiza = "";
 let aktifGorunum = "liste";
@@ -28,7 +29,7 @@ function filtreUygula() {
 
 function geriDon() {
     sonuclar.innerHTML = sonuclarHafiza;
-    gorunumToggle.style.display = "flex";
+    kontrolSatiri.style.display = "flex";
     gorunumUygula();
     filtreUygula();
     kartlariDinle();
@@ -50,7 +51,7 @@ function kartlariDinle() {
                 const turkiye = data.results.TR;
 
                 sonuclar.classList.remove("grid-mod");
-                gorunumToggle.style.display = "none";
+                kontrolSatiri.style.display = "none";
 
                 const poster = detay.poster_path
                     ? "<img src='https://image.tmdb.org/t/p/w185" + detay.poster_path + "' class='detay-poster'>"
@@ -123,8 +124,7 @@ button.addEventListener("click", function() {
         const hepsi = [...filmler, ...diziler];
 
         aktifFiltre = "hepsi";
-        document.getElementById("filtreler").style.display = "flex";
-        gorunumToggle.style.display = "flex";
+        kontrolSatiri.style.display = "flex";
         sonuclar.innerHTML = "";
         document.body.classList.add("arama-yapildi");
 
@@ -191,8 +191,7 @@ document.getElementById("logo").addEventListener("click", function() {
     aktifGorunum = "liste";
     document.body.classList.remove("arama-yapildi");
     document.querySelectorAll(".filtre-btn").forEach(b => b.classList.remove("aktif"));
-    document.getElementById("filtreler").style.display = "none";
-    gorunumToggle.style.display = "none";
+    kontrolSatiri.style.display = "none";
     document.getElementById("btn-liste").classList.add("aktif");
     document.getElementById("btn-grid").classList.remove("aktif");
     input.focus();
