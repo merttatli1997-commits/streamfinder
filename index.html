@@ -8,8 +8,8 @@
 </head>
 <body>
 <div class="kapsayici">
-    <h1 id="logo" style="cursor:pointer;">StreamFinder<span class="nokta">.</span></h1>
-    <p class="tagline">Türkiye'de nerede var, saniyeler içinde bul.</p>
+    <h1 id="logo" style="cursor:pointer;">StreamFinder!</h1>
+    <p class="tagline">İzlemek istediğin içerik hangi platformda, saniyeler içinde bul.</p>
     <div class="arama-alani">
         <div id="filtreler" style="display:none;">
             <button class="filtre-btn" data-filtre="hepsi">Hepsi</button>
@@ -19,6 +19,10 @@
         <div class="arama-satir">
             <input type="text" placeholder="Film veya dizi adı yaz...">
             <button id="ara-btn">Ara</button>
+        </div>
+        <div id="gorunum-toggle" style="display:none;">
+            <button class="gorunum-btn aktif" id="btn-liste" title="Liste görünümü">☰ Liste</button>
+            <button class="gorunum-btn" id="btn-grid" title="Grid görünümü">⊞ Grid</button>
         </div>
     </div>
     <div class="sonuclar" id="sonuclar"></div>
