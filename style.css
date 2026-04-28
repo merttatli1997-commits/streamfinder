@@ -101,16 +101,16 @@ body {
 
 .arama-satir {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 14px;
+    gap: 8px;
     width: 100%;
-    max-width: 480px;
+    max-width: 520px;
 }
 
 input {
-    width: 100%;
-    padding: 14px 20px;
+    flex: 1;
+    padding: 13px 18px;
     border: 1.5px solid var(--border);
     border-radius: var(--radius-md);
     font-size: 15px;
@@ -120,6 +120,7 @@ input {
     background: var(--surface);
     outline: none;
     transition: border-color var(--transition), box-shadow var(--transition);
+    min-width: 0;
 }
 
 input::placeholder {
@@ -132,8 +133,7 @@ input:focus {
 }
 
 #ara-btn {
-    width: 100%;
-    padding: 14px 26px;
+    padding: 13px 24px;
     background-color: var(--accent);
     color: white;
     border: none;
@@ -156,6 +156,37 @@ input:focus {
 #ara-btn:active {
     transform: translateY(0);
     box-shadow: none;
+}
+
+/* ─── GÖRÜNÜM TOGGLE ─── */
+#gorunum-toggle {
+    display: flex;
+    gap: 4px;
+    margin-top: -4px;
+}
+
+.gorunum-btn {
+    padding: 5px 13px;
+    background-color: var(--surface);
+    color: var(--text-muted);
+    border: 1.5px solid var(--border);
+    border-radius: 999px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.gorunum-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.gorunum-btn.aktif {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: white;
 }
 
 /* ─── FİLTRELER ─── */
@@ -203,6 +234,46 @@ input:focus {
 
 #sonuclar:empty {
     display: none;
+}
+
+/* Grid modu */
+#sonuclar.grid-mod {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    padding: 12px;
+}
+
+#sonuclar.grid-mod .film-kart {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    border-bottom: none;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--surface-2);
+    transform: none;
+}
+
+#sonuclar.grid-mod .film-kart:hover {
+    background: var(--surface-2);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+#sonuclar.grid-mod .film-kart img {
+    width: 100%;
+    height: 165px;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+#sonuclar.grid-mod .film-kart p {
+    padding: 8px 10px 10px;
+    font-size: 12px;
+    line-height: 1.35;
+    color: var(--text-primary);
 }
 
 /* ─── FİLM KARTI ─── */
