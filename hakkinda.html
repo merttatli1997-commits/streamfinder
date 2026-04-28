@@ -6,53 +6,56 @@
     <title>Hakkında – StreamFinder</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body { padding-top: 60px; align-items: flex-start; }
-        .icerik { max-width: 640px; width: 100%; margin: 0 auto; padding: 0 16px; }
-        .sayfa-baslik { color: #1e3a5f; font-size: 28px; margin-bottom: 8px; font-family: Arial, sans-serif; }
-        .sayfa-kart { background: white; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 20px; }
-        .sayfa-kart h2 { color: #1e3a5f; font-size: 18px; margin-top: 0; margin-bottom: 12px; font-family: Arial, sans-serif; }
-        .sayfa-kart p { color: #444; font-size: 15px; line-height: 1.7; margin: 0 0 12px 0; font-family: Arial, sans-serif; }
-        .sayfa-kart p:last-child { margin-bottom: 0; }
-        .tmdb-badge { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
-        .tmdb-badge img { height: 24px; }
-        .tmdb-badge span { color: #666; font-size: 13px; font-family: Arial, sans-serif; }
-        .geri-link { display: inline-flex; align-items: center; gap: 6px; color: #3b82f6; text-decoration: none; font-size: 14px; font-family: Arial, sans-serif; margin-bottom: 24px; }
-        .geri-link:hover { text-decoration: underline; }
+        body { padding-top: 64px; }
+        .sayfa { max-width: 680px; width: 100%; padding: 0 24px 80px; animation: fadeUp 0.45s ease both; }
+        .geri-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; margin-bottom: 32px; transition: color var(--transition); }
+        .geri-link:hover { color: var(--accent); }
+        .sayfa-baslik { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 700; color: var(--text-primary); letter-spacing: -1px; margin-bottom: 32px; line-height: 1.1; }
+        .kart { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 16px; box-shadow: var(--shadow-sm); }
+        .kart h2 { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; color: var(--text-primary); margin: 0 0 12px 0; letter-spacing: -0.2px; }
+        .kart p { font-size: 15px; color: var(--text-secondary); line-height: 1.75; margin: 0 0 12px 0; }
+        .kart p:last-child { margin-bottom: 0; }
+        .kart a { color: var(--accent); text-decoration: none; }
+        .kart a:hover { text-decoration: underline; }
+        .tmdb-satir { display: flex; align-items: center; gap: 12px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+        .tmdb-satir img { height: 20px; opacity: 0.7; }
+        .tmdb-satir span { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
     </style>
 </head>
 <body>
-<div class="icerik">
+<div class="sayfa">
     <a href="index.html" class="geri-link">← Ana Sayfaya Dön</a>
     <h1 class="sayfa-baslik">Hakkında</h1>
 
-    <div class="sayfa-kart">
+    <div class="kart">
         <h2>StreamFinder Nedir?</h2>
         <p>StreamFinder, aradığınız film veya dizinin Türkiye'deki hangi yayın platformlarında bulunduğunu saniyeler içinde gösteren ücretsiz bir arama aracıdır.</p>
         <p>Netflix, Disney+, Amazon Prime Video, Gain ve daha fazlasını tek seferde tarıyoruz. Abonelik bilgisinin yanı sıra kiralama ve satın alma seçeneklerini de görebilirsiniz.</p>
     </div>
 
-    <div class="sayfa-kart">
+    <div class="kart">
         <h2>Nasıl Çalışır?</h2>
         <p>Arama kutusuna film veya dizi adını yazıp "Ara" butonuna basmanız yeterli. Sonuçlar içinden istediğiniz içeriğe tıkladığınızda Türkiye'deki platform bilgisi, puan, süre ve tür gibi detaylar karşınıza çıkar.</p>
         <p>Platform verileri <strong>The Movie Database (TMDB)</strong> API'si aracılığıyla anlık olarak çekilmektedir.</p>
-        <div class="tmdb-badge">
-            <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" alt="TMDB Logo">
+        <div class="tmdb-satir">
+            <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" alt="TMDB">
             <span>Bu ürün TMDB API'sini kullanmaktadır ancak TMDB tarafından onaylanmamış veya sertifikalandırılmamıştır.</span>
         </div>
     </div>
 
-    <div class="sayfa-kart">
+    <div class="kart">
         <h2>Geliştirici</h2>
         <p>StreamFinder, yayın platformları arasında içerik aramayı kolaylaştırmak amacıyla geliştirilmiş bağımsız bir projedir. Herhangi bir yayın platformuyla ticari ilişkimiz bulunmamaktadır.</p>
-        <p>Geri bildirim, öneri veya sorularınız için <a href="iletisim.html" style="color:#3b82f6;">iletişim sayfasını</a> ziyaret edebilirsiniz.</p>
+        <p>Geri bildirim, öneri veya sorularınız için <a href="iletisim.html">iletişim sayfasını</a> ziyaret edebilirsiniz.</p>
     </div>
 </div>
+
 <footer class="site-footer">
     <a href="hakkinda.html">Hakkında</a>
     <a href="sss.html">SSS</a>
     <a href="iletisim.html">İletişim</a>
     <a href="gizlilik.html">Gizlilik Politikası</a>
-    <span>© 2025 StreamFinder</span>
+    <span>© 2026 StreamFinder</span>
 </footer>
 </body>
 </html>
