@@ -126,10 +126,11 @@ button.addEventListener("click", function() {
         document.getElementById("filtreler").style.display = "flex";
         gorunumToggle.style.display = "flex";
         sonuclar.innerHTML = "";
+        document.body.classList.add("arama-yapildi");
 
         hepsi.forEach(function(film) {
             const poster = film.poster_path
-                ? "<img src='https://image.tmdb.org/t/p/w92" + film.poster_path + "'>"
+                ? "<img src='https://image.tmdb.org/t/p/w342" + film.poster_path + "'>"
                 : "";
             const yil = film.release_date ? film.release_date.slice(0, 4) : "?";
             sonuclar.innerHTML += "<div class='film-kart' data-id='" + film.id + "' data-tur='" + film.tur + "'>" + poster + "<p>" + film.title + " (" + yil + ") <span class='etiket'>" + film.tur + "</span></p></div>";
@@ -188,6 +189,7 @@ document.getElementById("logo").addEventListener("click", function() {
     input.value = "";
     aktifFiltre = "hepsi";
     aktifGorunum = "liste";
+    document.body.classList.remove("arama-yapildi");
     document.querySelectorAll(".filtre-btn").forEach(b => b.classList.remove("aktif"));
     document.getElementById("filtreler").style.display = "none";
     gorunumToggle.style.display = "none";
