@@ -49,8 +49,8 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 640px;
-    padding: 0 20px;
+    max-width: 1000px;
+    padding: 0 32px;
     flex: 1;
     animation: fadeUp 0.45s ease both;
 }
@@ -239,8 +239,8 @@ input:focus {
 /* Grid modu */
 #sonuclar.grid-mod {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
     padding: 12px;
 }
 
@@ -298,7 +298,7 @@ input:focus {
 
 .film-kart img {
     border-radius: 6px;
-    width: 46px;
+    width: 52px;
     height: auto;
     object-fit: cover;
     flex-shrink: 0;
