@@ -3,59 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sık Sorulan Sorular – StreamFinder</title>
+    <title>SSS – StreamFinder</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body { padding-top: 60px; align-items: flex-start; }
-        .icerik { max-width: 640px; width: 100%; margin: 0 auto; padding: 0 16px; }
-        .sayfa-baslik { color: #1e3a5f; font-size: 28px; margin-bottom: 8px; font-family: Arial, sans-serif; }
-        .geri-link { display: inline-flex; align-items: center; gap: 6px; color: #3b82f6; text-decoration: none; font-size: 14px; font-family: Arial, sans-serif; margin-bottom: 24px; }
-        .geri-link:hover { text-decoration: underline; }
-        .sss-item { background: white; border-radius: 12px; padding: 22px 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 14px; cursor: pointer; }
-        .sss-soru { color: #1e3a5f; font-size: 16px; font-weight: bold; font-family: Arial, sans-serif; display: flex; justify-content: space-between; align-items: center; }
-        .sss-soru::after { content: "+"; font-size: 22px; color: #3b82f6; line-height: 1; transition: transform 0.2s; }
-        .sss-item.acik .sss-soru::after { transform: rotate(45deg); }
-        .sss-cevap { display: none; color: #444; font-size: 15px; line-height: 1.7; margin-top: 12px; font-family: Arial, sans-serif; }
+        body { padding-top: 64px; }
+        .sayfa { max-width: 680px; width: 100%; padding: 0 24px 80px; animation: fadeUp 0.45s ease both; }
+        .geri-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; margin-bottom: 32px; transition: color var(--transition); }
+        .geri-link:hover { color: var(--accent); }
+        .sayfa-baslik { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 700; color: var(--text-primary); letter-spacing: -1px; margin-bottom: 32px; line-height: 1.1; }
+        .sss-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 10px; cursor: pointer; transition: border-color var(--transition), box-shadow var(--transition); }
+        .sss-item:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+        .sss-item.acik { border-color: var(--accent); }
+        .sss-soru { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .sss-soru-text { font-size: 15px; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
+        .sss-ikon { font-size: 20px; color: var(--accent); flex-shrink: 0; transition: transform 0.25s ease; line-height: 1; }
+        .sss-item.acik .sss-ikon { transform: rotate(45deg); }
+        .sss-cevap { display: none; font-size: 14px; color: var(--text-secondary); line-height: 1.75; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
         .sss-item.acik .sss-cevap { display: block; }
+        .sss-cevap a { color: var(--accent); text-decoration: none; }
+        .sss-cevap a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-<div class="icerik">
+<div class="sayfa">
     <a href="index.html" class="geri-link">← Ana Sayfaya Dön</a>
     <h1 class="sayfa-baslik">Sık Sorulan Sorular</h1>
 
     <div class="sss-item">
-        <div class="sss-soru">StreamFinder ücretsiz mi?</div>
+        <div class="sss-soru"><span class="sss-soru-text">StreamFinder ücretsiz mi?</span><span class="sss-ikon">+</span></div>
         <div class="sss-cevap">Evet, StreamFinder tamamen ücretsizdir. Herhangi bir üyelik veya ödeme gerektirmez.</div>
     </div>
 
     <div class="sss-item">
-        <div class="sss-soru">Platform bilgileri ne kadar güncel?</div>
+        <div class="sss-soru"><span class="sss-soru-text">Platform bilgileri ne kadar güncel?</span><span class="sss-ikon">+</span></div>
         <div class="sss-cevap">Platform verileri The Movie Database (TMDB) API'sinden anlık olarak çekilmektedir. TMDB'nin veritabanı sürekli güncellense de bazı içerikler için kısa gecikmeler yaşanabilir.</div>
     </div>
 
     <div class="sss-item">
-        <div class="sss-soru">Yalnızca Türkiye'deki platformları mı gösteriyor?</div>
+        <div class="sss-soru"><span class="sss-soru-text">Yalnızca Türkiye'deki platformları mı gösteriyor?</span><span class="sss-ikon">+</span></div>
         <div class="sss-cevap">Evet. StreamFinder şu an için yalnızca Türkiye bölgesindeki yayın platformu bilgilerini göstermektedir. İleride farklı ülkelere destek eklenmesi planlanmaktadır.</div>
     </div>
 
     <div class="sss-item">
-        <div class="sss-soru">Aradığım içerik hiçbir platformda çıkmıyor, ne yapmalıyım?</div>
+        <div class="sss-soru"><span class="sss-soru-text">Aradığım içerik hiçbir platformda çıkmıyor, ne yapmalıyım?</span><span class="sss-ikon">+</span></div>
         <div class="sss-cevap">Bu durumda söz konusu içerik Türkiye'deki platformlarda henüz mevcut olmayabilir ya da yakın zamanda yayından kaldırılmış olabilir. Platform bilgilerinin doğruluğu için ilgili platformun resmi sitesini kontrol etmenizi öneririz.</div>
     </div>
 
     <div class="sss-item">
-        <div class="sss-soru">Yanlış veya eksik bilgi gördüm, nasıl bildiririm?</div>
-        <div class="sss-cevap">Hatalı platform bilgilerini <a href="iletisim.html" style="color:#3b82f6;">iletişim sayfamızdan</a> bize iletebilirsiniz. Geri bildiriminiz için teşekkür ederiz.</div>
+        <div class="sss-soru"><span class="sss-soru-text">Yanlış veya eksik bilgi gördüm, nasıl bildiririm?</span><span class="sss-ikon">+</span></div>
+        <div class="sss-cevap">Hatalı platform bilgilerini <a href="iletisim.html">iletişim sayfamızdan</a> bize iletebilirsiniz. Geri bildiriminiz için teşekkür ederiz.</div>
     </div>
 
     <div class="sss-item">
-        <div class="sss-soru">StreamFinder hangi platformları kapsıyor?</div>
+        <div class="sss-soru"><span class="sss-soru-text">StreamFinder hangi platformları kapsıyor?</span><span class="sss-ikon">+</span></div>
         <div class="sss-cevap">Netflix, Amazon Prime Video, Disney+, Gain, Blutv, Mubi, Apple TV+ ve TMDB'nin Türkiye için listelediği diğer tüm platformlar kapsama dahildir. Liste TMDB veritabanına bağlı olarak otomatik güncellenir.</div>
     </div>
 
     <div class="sss-item">
-        <div class="sss-soru">StreamFinder herhangi bir platformla ticari ilişkisi var mı?</div>
+        <div class="sss-soru"><span class="sss-soru-text">StreamFinder herhangi bir platformla ticari ilişkisi var mı?</span><span class="sss-ikon">+</span></div>
         <div class="sss-cevap">Hayır. StreamFinder bağımsız bir projedir ve hiçbir yayın platformuyla ticari ortaklığı ya da sponsorluk ilişkisi bulunmamaktadır.</div>
     </div>
 </div>
