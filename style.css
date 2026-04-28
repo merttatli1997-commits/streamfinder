@@ -172,13 +172,26 @@ input:focus {
     box-shadow: none;
 }
 
+/* ─── KONTROL SATIRI (filtreler + toggle) ─── */
+#kontrol-satiri {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 520px;
+    margin-top: -4px;
+}
+
+#filtreler {
+    display: flex;
+    gap: 6px;
+}
+
 /* ─── GÖRÜNÜM TOGGLE ─── */
 #gorunum-toggle {
     display: flex;
     gap: 4px;
-    margin-top: -4px;
 }
-
 .gorunum-btn {
     padding: 5px 13px;
     background-color: var(--surface);
