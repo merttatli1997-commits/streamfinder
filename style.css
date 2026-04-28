@@ -2,32 +2,30 @@ body {
     background-color: #f0f4f8;
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     padding-top: 120px;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
 }
-
 .kapsayici {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    flex: 1;
 }
-
 h1 {
     color: #1e3a5f;
     font-size: 32px;
     margin-bottom: 8px;
 }
-
 .arama-alani {
     display: flex;
     flex-direction: row;
     gap: 8px;
 }
-
 input {
     padding: 10px 16px;
     border: 2px solid #cbd5e0;
@@ -36,7 +34,6 @@ input {
     outline: none;
     width: 280px;
 }
-
 button {
     padding: 10px 20px;
     background-color: #3b82f6;
@@ -46,7 +43,6 @@ button {
     font-size: 16px;
     cursor: pointer;
 }
-
 #sonuclar {
     margin-top: 24px;
     width: 600px;
@@ -55,11 +51,9 @@ button {
     padding: 16px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-
 #sonuclar:empty {
     display: none;
 }
-
 .film-kart {
     display: flex;
     align-items: center;
@@ -67,11 +61,9 @@ button {
     margin-bottom: 12px;
     cursor: pointer;
 }
-
 .film-kart img {
     border-radius: 6px;
 }
-
 .etiket {
     background-color: #3b82f6;
     color: white;
@@ -80,13 +72,11 @@ button {
     border-radius: 12px;
     margin-left: 6px;
 }
-
 #filtreler {
     display: flex;
     gap: 8px;
     margin-bottom: 12px;
 }
-
 .filtre-btn {
     padding: 6px 16px;
     background-color: #e2e8f0;
@@ -96,17 +86,14 @@ button {
     font-size: 13px;
     cursor: pointer;
 }
-
 .filtre-btn:hover {
     background-color: #3b82f6;
     color: white;
 }
-
 .filtre-btn.aktif {
     background-color: #3b82f6;
     color: white;
 }
-
 #geri-don {
     margin-top: 12px;
     padding: 8px 16px;
@@ -117,45 +104,37 @@ button {
     font-size: 14px;
     cursor: pointer;
 }
-
 .platform {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 8px;
 }
-
 .platform img {
     border-radius: 6px;
 }
-
 .detay-ust {
     display: flex;
     gap: 16px;
     margin-bottom: 16px;
 }
-
 .detay-poster {
     width: 120px;
     border-radius: 10px;
 }
-
 .detay-bilgi {
     flex: 1;
 }
-
 .detay-yil {
     color: #666;
     font-size: 13px;
     margin: 4px 0;
 }
-
 .detay-meta {
     font-size: 13px;
     color: #333;
     margin: 4px 0;
 }
-
 .etiket-film {
     background-color: #3b82f6;
     color: white;
@@ -165,7 +144,6 @@ button {
     display: inline-block;
     margin-top: 4px;
 }
-
 .etiket-dizi {
     background-color: #10b981;
     color: white;
@@ -176,17 +154,43 @@ button {
     margin-top: 4px;
 }
 
+/* Footer */
+.site-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    padding: 24px 16px;
+    margin-top: 48px;
+    border-top: 1px solid #e2e8f0;
+    background-color: #f0f4f8;
+}
+.site-footer a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+}
+.site-footer a:hover {
+    text-decoration: underline;
+}
+.site-footer span {
+    color: #94a3b8;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+}
+
 @media (max-width: 600px) {
     .kapsayici {
         padding: 0 16px;
         width: 100%;
     }
-
     #sonuclar {
         width: 100%;
         box-sizing: border-box;
     }
-
     input {
         width: 180px;
     }
