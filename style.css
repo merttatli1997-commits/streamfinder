@@ -541,18 +541,18 @@ input:focus {
 
 /* ─── GERİ DÖN ─── */
 #geri-don {
-    margin: 12px 12px 8px;
-    padding: 9px 18px;
+    padding: 7px 14px;
     background-color: transparent;
-    color: var(--text-secondary);
+    color: var(--text-muted);
     border: 1.5px solid var(--border);
     border-radius: var(--radius-sm);
-    font-size: 13px;
+    font-size: 12px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 500;
     cursor: pointer;
     transition: all var(--transition);
-    display: inline-block;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 #geri-don:hover {
