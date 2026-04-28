@@ -120,6 +120,7 @@ body.arama-yapildi .tagline {
     gap: 8px;
     width: 100%;
     max-width: 520px;
+    box-sizing: border-box;
 }
 
 input {
@@ -180,6 +181,7 @@ input:focus {
     width: 100%;
     max-width: 520px;
     margin-top: -4px;
+    box-sizing: border-box;
 }
 
 #filtreler {
@@ -290,8 +292,9 @@ input:focus {
 
 #sonuclar.grid-mod .film-kart img {
     width: 100%;
-    height: 165px;
+    height: 200px;
     object-fit: cover;
+    object-position: top;
     border-radius: 0;
     box-shadow: none;
 }
