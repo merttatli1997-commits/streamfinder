@@ -80,6 +80,7 @@ function kartlariDinle() {
                             <div class='detay-baslik-satir'>
                                 <h3 class='detay-baslik'>${detay.title || detay.name}</h3>
                                 <span class='etiket ${etiketClass}'>${tur}</span>
+                                <button id='geri-don' type='button' style='margin-left:auto;'>← Geri Dön</button>
                             </div>
                             <div class='detay-meta-satir'>
                                 ${yil ? "<span class='meta-chip'>" + yil + "</span>" : ""}
@@ -114,7 +115,8 @@ function kartlariDinle() {
                     platformHtml += "<p class='platform-yok'>Bu içerik Türkiye'de henüz hiçbir platformda mevcut değil.</p>";
                 }
 
-                platformHtml += "</div><button id='geri-don' type='button'>← Geri Dön</button>";
+                platformHtml += "</div>";
+                sonuclar.innerHTML = platformHtml;
                 sonuclar.innerHTML = platformHtml;
                 document.getElementById("geri-don").addEventListener("click", geriDon);
             });
