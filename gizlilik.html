@@ -6,24 +6,24 @@
     <title>Gizlilik Politikası – StreamFinder</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body { padding-top: 60px; align-items: flex-start; }
-        .icerik { max-width: 640px; width: 100%; margin: 0 auto; padding: 0 16px 40px; }
-        .sayfa-baslik { color: #1e3a5f; font-size: 28px; margin-bottom: 4px; font-family: Arial, sans-serif; }
-        .guncelleme { color: #888; font-size: 13px; margin-bottom: 24px; font-family: Arial, sans-serif; }
-        .geri-link { display: inline-flex; align-items: center; gap: 6px; color: #3b82f6; text-decoration: none; font-size: 14px; font-family: Arial, sans-serif; margin-bottom: 24px; }
-        .geri-link:hover { text-decoration: underline; }
-        .bolum { background: white; border-radius: 12px; padding: 24px 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 16px; }
-        .bolum h2 { color: #1e3a5f; font-size: 17px; margin: 0 0 12px 0; font-family: Arial, sans-serif; }
-        .bolum p, .bolum li { color: #444; font-size: 15px; line-height: 1.75; font-family: Arial, sans-serif; }
-        .bolum p { margin: 0 0 10px 0; }
+        body { padding-top: 64px; }
+        .sayfa { max-width: 680px; width: 100%; padding: 0 24px 80px; animation: fadeUp 0.45s ease both; }
+        .geri-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; margin-bottom: 32px; transition: color var(--transition); }
+        .geri-link:hover { color: var(--accent); }
+        .sayfa-baslik { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 700; color: var(--text-primary); letter-spacing: -1px; margin-bottom: 6px; line-height: 1.1; }
+        .guncelleme { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+        .bolum { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 28px; margin-bottom: 12px; box-shadow: var(--shadow-sm); }
+        .bolum h2 { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; color: var(--text-primary); margin: 0 0 12px 0; letter-spacing: -0.2px; }
+        .bolum p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin: 0 0 10px 0; }
         .bolum p:last-child { margin-bottom: 0; }
-        .bolum ul { padding-left: 20px; margin: 8px 0 0 0; }
-        .bolum ul li { margin-bottom: 6px; }
-        a { color: #3b82f6; }
+        .bolum ul { padding-left: 18px; margin: 8px 0 0 0; }
+        .bolum ul li { font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 4px; }
+        .bolum a { color: var(--accent); text-decoration: none; }
+        .bolum a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-<div class="icerik">
+<div class="sayfa">
     <a href="index.html" class="geri-link">← Ana Sayfaya Dön</a>
     <h1 class="sayfa-baslik">Gizlilik Politikası</h1>
     <p class="guncelleme">Son güncelleme: Ocak 2025</p>
@@ -36,7 +36,7 @@
     <div class="bolum">
         <h2>2. Toplanan Veriler</h2>
         <p>StreamFinder, kullanıcıların kişisel bilgilerini doğrudan toplamaz veya saklamaz. Arama sorgularınız yalnızca TMDB API'sine iletilmek amacıyla kullanılır ve sunucularımızda depolanmaz.</p>
-        <p>Otomatik olarak toplanabilecek teknik veriler şunlardır:</p>
+        <p>Otomatik olarak toplanabilecek teknik veriler:</p>
         <ul>
             <li>IP adresi (anonimleştirilmiş)</li>
             <li>Tarayıcı türü ve versiyonu</li>
@@ -49,7 +49,7 @@
         <h2>3. Çerezler (Cookies)</h2>
         <p>StreamFinder, hizmetin işleyişi için zorunlu olmayan çerezler kullanmaz. Ancak aşağıdaki üçüncü taraf hizmetler kendi çerezlerini yerleştirebilir:</p>
         <ul>
-            <li><strong>Google AdSense:</strong> Kişiselleştirilmiş reklamlar sunmak için çerez kullanabilir. Google'ın reklam politikası hakkında bilgi almak için <a href="https://policies.google.com/technologies/ads" target="_blank">bu bağlantıyı</a> ziyaret edebilirsiniz.</li>
+            <li><strong>Google AdSense:</strong> Kişiselleştirilmiş reklamlar sunmak için çerez kullanabilir. Daha fazla bilgi için <a href="https://policies.google.com/technologies/ads" target="_blank">Google'ın reklam politikasını</a> inceleyebilirsiniz.</li>
             <li><strong>TMDB API:</strong> Film ve dizi verilerini sağlamak amacıyla kullanılmaktadır.</li>
         </ul>
         <p>Çerezleri tarayıcınızın ayarlarından devre dışı bırakabilirsiniz; ancak bu, sitenin bazı özelliklerini etkileyebilir.</p>
@@ -57,12 +57,10 @@
 
     <div class="bolum">
         <h2>4. Üçüncü Taraf Hizmetler</h2>
-        <p>StreamFinder aşağıdaki üçüncü taraf hizmetleri kullanmaktadır:</p>
         <ul>
-            <li><strong>The Movie Database (TMDB):</strong> Film, dizi ve platform verilerinin sağlanması için. TMDB'nin gizlilik politikasına <a href="https://www.themoviedb.org/privacy-policy" target="_blank">buradan</a> ulaşabilirsiniz.</li>
-            <li><strong>Google AdSense:</strong> Reklam gösterimi için. Google'ın gizlilik politikasına <a href="https://policies.google.com/privacy" target="_blank">buradan</a> ulaşabilirsiniz.</li>
+            <li><strong>The Movie Database (TMDB):</strong> Film, dizi ve platform verilerinin sağlanması için. <a href="https://www.themoviedb.org/privacy-policy" target="_blank">TMDB Gizlilik Politikası</a></li>
+            <li><strong>Google AdSense:</strong> Reklam gösterimi için. <a href="https://policies.google.com/privacy" target="_blank">Google Gizlilik Politikası</a></li>
         </ul>
-        <p>Bu üçüncü taraf hizmetlerin veri işleme pratikleri kendi gizlilik politikalarına tabidir ve StreamFinder'ın kontrolü dışındadır.</p>
     </div>
 
     <div class="bolum">
@@ -83,7 +81,7 @@
 
     <div class="bolum">
         <h2>8. Politika Değişiklikleri</h2>
-        <p>Bu gizlilik politikası zaman zaman güncellenebilir. Değişiklikler bu sayfada yayımlanacak ve "Son güncelleme" tarihi düzeltilecektir. Siteyi kullanmaya devam etmeniz güncel politikayı kabul ettiğiniz anlamına gelir.</p>
+        <p>Bu gizlilik politikası zaman zaman güncellenebilir. Değişiklikler bu sayfada yayımlanacak ve "Son güncelleme" tarihi düzeltilecektir.</p>
     </div>
 
     <div class="bolum">
@@ -97,7 +95,7 @@
     <a href="sss.html">SSS</a>
     <a href="iletisim.html">İletişim</a>
     <a href="gizlilik.html">Gizlilik Politikası</a>
-    <span>© 2025 StreamFinder</span>
+    <span>© 2026 StreamFinder</span>
 </footer>
 </body>
 </html>
