@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim – StreamFinder</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { padding-top: 60px; align-items: flex-start; }
+        .icerik { max-width: 640px; width: 100%; margin: 0 auto; padding: 0 16px; }
+        .sayfa-baslik { color: #1e3a5f; font-size: 28px; margin-bottom: 8px; font-family: Arial, sans-serif; }
+        .sayfa-kart { background: white; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 20px; }
+        .sayfa-kart p { color: #444; font-size: 15px; line-height: 1.7; margin: 0 0 16px 0; font-family: Arial, sans-serif; }
+        .geri-link { display: inline-flex; align-items: center; gap: 6px; color: #3b82f6; text-decoration: none; font-size: 14px; font-family: Arial, sans-serif; margin-bottom: 24px; }
+        .geri-link:hover { text-decoration: underline; }
+        .iletisim-form label { display: block; font-size: 14px; color: #1e3a5f; font-weight: bold; margin-bottom: 6px; font-family: Arial, sans-serif; }
+        .iletisim-form input,
+        .iletisim-form textarea { width: 100%; box-sizing: border-box; padding: 10px 14px; border: 2px solid #cbd5e0; border-radius: 8px; font-size: 15px; font-family: Arial, sans-serif; outline: none; margin-bottom: 16px; resize: vertical; transition: border-color 0.2s; }
+        .iletisim-form input:focus,
+        .iletisim-form textarea:focus { border-color: #3b82f6; }
+        .iletisim-form textarea { min-height: 120px; }
+        .iletisim-form button { background-color: #3b82f6; color: white; border: none; padding: 11px 24px; border-radius: 8px; font-size: 15px; cursor: pointer; font-family: Arial, sans-serif; }
+        .iletisim-form button:hover { background-color: #2563eb; }
+        .basari-mesaj { display: none; background: #ecfdf5; border: 1px solid #10b981; color: #065f46; border-radius: 8px; padding: 14px 18px; font-size: 14px; font-family: Arial, sans-serif; margin-top: 12px; }
+        .eposta-link { color: #3b82f6; text-decoration: none; font-weight: bold; }
+        .eposta-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<div class="icerik">
+    <a href="index.html" class="geri-link">← Ana Sayfaya Dön</a>
+    <h1 class="sayfa-baslik">İletişim</h1>
+
+    <div class="sayfa-kart">
+        <p>Hatalı platform bilgisi, öneri veya herhangi bir konuda bize ulaşmak isterseniz aşağıdaki formu kullanabilir ya da doğrudan e-posta gönderebilirsiniz.</p>
+        <p>📧 <a href="mailto:sadecedesigniletisim@gmail.com" class="eposta-link">sadecedesigniletisim@gmail.com</a></p>
+
+        <div class="iletisim-form">
+            <label for="ad">Adınız</label>
+            <input type="text" id="ad" placeholder="Adınız Soyadınız">
+
+            <label for="eposta">E-posta Adresiniz</label>
+            <input type="email" id="eposta" placeholder="ornek@mail.com">
+
+            <label for="mesaj">Mesajınız</label>
+            <textarea id="mesaj" placeholder="Mesajınızı buraya yazın..."></textarea>
+
+            <button onclick="formGonder()">Gönder</button>
+            <div class="basari-mesaj" id="basari-mesaj">✅ Mesajınız alındı! En kısa sürede geri dönüş yapacağız.</div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <a href="hakkinda.html">Hakkında</a>
+    <a href="sss.html">SSS</a>
+    <a href="iletisim.html">İletişim</a>
+    <a href="gizlilik.html">Gizlilik Politikası</a>
+    <span>© 2025 StreamFinder</span>
+</footer>
+
+<script>
+function formGonder() {
+    const ad = document.getElementById("ad").value.trim();
+    const eposta = document.getElementById("eposta").value.trim();
+    const mesaj = document.getElementById("mesaj").value.trim();
+    if (!ad || !eposta || !mesaj) { alert("Lütfen tüm alanları doldurun."); return; }
+    document.getElementById("basari-mesaj").style.display = "block";
+    document.getElementById("ad").value = "";
+    document.getElementById("eposta").value = "";
+    document.getElementById("mesaj").value = "";
+}
+</script>
+</body>
+</html>
