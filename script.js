@@ -3,8 +3,18 @@ const API_KEY = "961d669761aa579f97f0b0b2854997f4";
 const input = document.querySelector("input");
 const button = document.getElementById("ara-btn");
 const sonuclar = document.getElementById("sonuclar");
+const gorunumToggle = document.getElementById("gorunum-toggle");
 let aktifFiltre = "hepsi";
 let sonuclarHafiza = "";
+let aktifGorunum = "liste";
+
+function gorunumUygula() {
+    if (aktifGorunum === "grid") {
+        sonuclar.classList.add("grid-mod");
+    } else {
+        sonuclar.classList.remove("grid-mod");
+    }
+}
 
 function filtreUygula() {
     document.querySelectorAll(".film-kart").forEach(function(kart) {
@@ -18,6 +28,8 @@ function filtreUygula() {
 
 function geriDon() {
     sonuclar.innerHTML = sonuclarHafiza;
+    gorunumToggle.style.display = "flex";
+    gorunumUygula();
     filtreUygula();
     kartlariDinle();
 }
@@ -36,6 +48,9 @@ function kartlariDinle() {
                 const data = sonuc[0];
                 const detay = sonuc[1];
                 const turkiye = data.results.TR;
+
+                sonuclar.classList.remove("grid-mod");
+                gorunumToggle.style.display = "none";
 
                 const poster = detay.poster_path
                     ? "<img src='https://image.tmdb.org/t/p/w185" + detay.poster_path + "' class='detay-poster'>"
@@ -84,7 +99,7 @@ function kartlariDinle() {
                         });
                     }
                 } else {
-                    platformHtml += "<p>Bu içerik Türkiye'de henüz hiçbir platformda mevcut değil.</p>";
+                    platformHtml += "<p style='padding:8px 12px;color:#6b6860;font-size:14px;'>Bu içerik Türkiye'de henüz hiçbir platformda mevcut değil.</p>";
                 }
 
                 platformHtml += "<button id='geri-don' type='button'>← Geri Dön</button>";
@@ -96,10 +111,11 @@ function kartlariDinle() {
 }
 
 button.addEventListener("click", function() {
-    const aranan = input.value;
+    const aranan = input.value.trim();
+    if (!aranan) return;
 
-    const filmFetch = fetch("https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&query=" + aranan + "&language=tr-TR").then(r => r.json());
-    const diziFetch = fetch("https://api.themoviedb.org/3/search/tv?api_key=" + API_KEY + "&query=" + aranan + "&language=tr-TR").then(r => r.json());
+    const filmFetch = fetch("https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&query=" + encodeURIComponent(aranan) + "&language=tr-TR").then(r => r.json());
+    const diziFetch = fetch("https://api.themoviedb.org/3/search/tv?api_key=" + API_KEY + "&query=" + encodeURIComponent(aranan) + "&language=tr-TR").then(r => r.json());
 
     Promise.all([filmFetch, diziFetch]).then(function(sonuc) {
         const filmler = sonuc[0].results.map(f => ({ ...f, tur: "Film" }));
@@ -107,21 +123,40 @@ button.addEventListener("click", function() {
         const hepsi = [...filmler, ...diziler];
 
         aktifFiltre = "hepsi";
-        document.getElementById("filtreler").style.display = "block";
+        document.getElementById("filtreler").style.display = "flex";
+        gorunumToggle.style.display = "flex";
         sonuclar.innerHTML = "";
 
         hepsi.forEach(function(film) {
-            const poster = film.poster_path 
-                ? "<img src='https://image.tmdb.org/t/p/w92" + film.poster_path + "'>" 
+            const poster = film.poster_path
+                ? "<img src='https://image.tmdb.org/t/p/w92" + film.poster_path + "'>"
                 : "";
-            sonuclar.innerHTML += "<div class='film-kart' data-id='" + film.id + "' data-tur='" + film.tur + "'>" + poster + "<p>" + film.title + " (" + film.release_date + ") <span class='etiket'>" + film.tur + "</span></p></div>";
+            const yil = film.release_date ? film.release_date.slice(0, 4) : "?";
+            sonuclar.innerHTML += "<div class='film-kart' data-id='" + film.id + "' data-tur='" + film.tur + "'>" + poster + "<p>" + film.title + " (" + yil + ") <span class='etiket'>" + film.tur + "</span></p></div>";
         });
 
         sonuclarHafiza = sonuclar.innerHTML;
+        gorunumUygula();
         kartlariDinle();
     });
 });
 
+// Görünüm toggle
+document.getElementById("btn-liste").addEventListener("click", function() {
+    aktifGorunum = "liste";
+    document.getElementById("btn-liste").classList.add("aktif");
+    document.getElementById("btn-grid").classList.remove("aktif");
+    gorunumUygula();
+});
+
+document.getElementById("btn-grid").addEventListener("click", function() {
+    aktifGorunum = "grid";
+    document.getElementById("btn-grid").classList.add("aktif");
+    document.getElementById("btn-liste").classList.remove("aktif");
+    gorunumUygula();
+});
+
+// Filtre butonları
 document.querySelectorAll(".filtre-btn").forEach(function(btn) {
     btn.addEventListener("click", function() {
         const secilen = btn.getAttribute("data-filtre");
@@ -152,7 +187,11 @@ document.getElementById("logo").addEventListener("click", function() {
     sonuclar.innerHTML = "";
     input.value = "";
     aktifFiltre = "hepsi";
+    aktifGorunum = "liste";
     document.querySelectorAll(".filtre-btn").forEach(b => b.classList.remove("aktif"));
     document.getElementById("filtreler").style.display = "none";
+    gorunumToggle.style.display = "none";
+    document.getElementById("btn-liste").classList.add("aktif");
+    document.getElementById("btn-grid").classList.remove("aktif");
     input.focus();
 });
